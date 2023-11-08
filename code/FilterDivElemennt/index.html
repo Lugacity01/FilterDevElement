@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<style>
+.filterDiv {
+  float: left;
+  background-color: #2196F3;
+  color: #ffffff;
+  width: 100px;
+  line-height: 100px;
+  text-align: center;
+  margin: 2px;
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.container {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+/* Style the select box */
+#mySelect {
+  padding: 12px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+</style>
+<body>
+
+<h2>Filter DIV Elements</h2>
+
+<label for="mySelect">Select a category: </label>
+<select id="mySelect" onchange="filterSelection(this.value)">
+  <option value="all" selected>Show all</option>
+  <option value="cars">Cars</option>
+  <option value="animals">Animals</option>
+  <option value="fruits">Fruits</option>
+  <option value="colors">Colors</option>
+</select>
+
+<div class="container">
+  <div class="filterDiv cars">BMW</div>
+  <div class="filterDiv colors fruits">Orange</div>
+  <div class="filterDiv cars">Volvo</div>
+  <div class="filterDiv colors">Red</div>
+  <div class="filterDiv cars">Ford</div>
+  <div class="filterDiv colors">Blue</div>
+  <div class="filterDiv animals">Cat</div>
+  <div class="filterDiv animals">Dog</div>
+  <div class="filterDiv fruits">Melon</div>
+  <div class="filterDiv fruits animals">Kiwi</div>
+  <div class="filterDiv fruits">Banana</div>
+  <div class="filterDiv fruits">Lemon</div>
+  <div class="filterDiv animals">Cow</div>
+</div>
+
+
+
+<script>
+function filterSelection() {
+    const select = document.getElementById ('mySelect');
+    const selectedValue = select.value
+    const elements = document.getElementsByClassName("filterDiv");
+
+  for (const element of elements) {
+    const classes = element.classList;
+    const show = selectedValue === "all" || classes.contains(selectedValue);
+    classes.toggle("show", show);
+  }
+}
+
+filterSelection("");
+
+
+</script>
+
+</body>
+</html>
